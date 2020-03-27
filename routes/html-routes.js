@@ -2,28 +2,32 @@
 var path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+//var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
+
+  //home page
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
-    if (req.user) {
+    /*if (req.user) {
       res.redirect("/members");
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
+    */
   });
 
-  app.get("/login", function (req, res) {
+  //if user clicks "I lost a pet", go to page to enter info about themselves and pet
+  app.get("/lostPet", function (req, res) {
     // If the user already has an account send them to the members page
-    if (req.user) {
+    /*if (req.user) {
       res.redirect("/members");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
+    */
   });
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+  //if user clicks "I found a pet", go to page to enter info about pet
+  app.get("/foundPets", function (req, res) {
+    //res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 };
