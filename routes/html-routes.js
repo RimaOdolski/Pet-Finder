@@ -8,12 +8,8 @@ module.exports = function (app) {
 
   //home page
   app.get("/", function (req, res) {
-    // If the user already has an account send them to the members page
-    /*if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-    */
+    res.sendFile(path.join(__dirname, "../public/petfind/index.html"));
+    
   });
 
   //if user clicks "I lost a pet", go to page to enter info about themselves and pet
