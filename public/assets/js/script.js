@@ -15,8 +15,10 @@ $("#foundbtn").click(function(){
   location.replace("/petInfo");
   });
    
-  
+
  $("#saveBtn").click(function() {
+
+    console.log("save button clicked");
 
    var userInfo = { 
      microchip: $("#microchip").val().trim(),
@@ -26,9 +28,11 @@ $("#foundbtn").click(function(){
      address: $("#address").val().trim(),
      city: $("#city").val().trim()
     }
+    console.log(userInfo);
+
     $.ajax("/petInfo", {
       type: "POST",
-      data: userInfo,
+      data: userInfo
     }).then(
       function() {
         console.log("user info added");

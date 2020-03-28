@@ -9,12 +9,12 @@ module.exports = function (sequelize, DataTypes) {
       },
   
       breed: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
       },
   
       color: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
       },
 
