@@ -12,14 +12,9 @@ module.exports = function (app) {
     
   });
 
-  //if user clicks "I lost a pet", go to page to enter info about themselves and pet
-  app.get("/lostPets", function (req, res) {
+  //if user clicks "I lost a pet or I found a pet", go to page to enter info about themselves and pet
+  app.get("/petInfo", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
-  //if user clicks "I found a pet", go to page to enter info about pet
-  app.get("/foundPets", function (req, res) {
-    console.log("/foundpetspage");
-    res.sendFile(path.join(__dirname, "../public/profile.html"));
-  });
 };
