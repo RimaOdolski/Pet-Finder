@@ -1,18 +1,12 @@
 $(document).ready(function() {
-
+  var isOwner;
+ //var currentInfo =[];
 // When the user clicks on Found a pet, direct them to fill a form
 $("#foundbtn").click(function(){
-  location.replace("/foundPets");
+  isOwner= false;
+  location.replace("/petInfo");
 
-    /*$.ajax({
-        method: "GET",
-        url: "/foundPets"
-      })
-        .then(function(response) {
-            console.log(response);
-            console.log("button clicked!");
 
-        });*/
     
   });
 
@@ -20,8 +14,31 @@ $("#foundbtn").click(function(){
 
  // When user clicks on lost a pet, direct them to fill a form 
  $("#lostbtn").click(function(){
-    location.replace("/lostPets");
+  isOwner = true;
+  location.replace("/petInfo");
   });
    
+ $("#saveBtn").click(function() {
+
+   var userInfo = { 
+     microchip: $("#microchip").val().trim(),
+     email: $("#email").val().trim(),
+     breed: $("#breed").val().trim(),
+     color: $("#color").val().trim(),
+     address: $("#address").val().trim(),
+     city: $("#city").val().trim()
+    }
+    $.ajax("/petInfo", {
+      type: "POST",
+      data: userInfo,
+    }).then(
+      function() {
+        console.log("user info added");
+      }
+    );
+  
+
+
+ });
 
 });
