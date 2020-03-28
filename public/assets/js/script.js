@@ -9,7 +9,6 @@ $("#foundbtn").click(function(){
       })
         .then(function() {
             console.log("button clicked!");
-            location.reload();
     
         });
     
