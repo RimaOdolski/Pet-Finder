@@ -7,14 +7,29 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     },
 
-    name: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false
     },
 
-    petType: {
+    breed: {
+      type: DataType.STRING,
+      allowNull: false
+    },
+
+    color: {
+      type: DataType.STRING,
+      allowNull: false
+    },
+
+    address: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false     
     }
   });
 
