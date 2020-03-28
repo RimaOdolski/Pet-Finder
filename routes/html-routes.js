@@ -24,6 +24,7 @@ module.exports = function (app) {
 
   //if user clicks "I found a pet", go to page to enter info about pet
   app.get("/foundPets", function (req, res) {
+    console.log("/foundpetspage");
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 };
