@@ -1,8 +1,8 @@
 // Requiring path to so we can use relative routes to our HTML files
 var path = require("path");
 var db = require("../models");
-var Pet = require("../models/pet.js");
-var Person = require("../models/person.js");
+//var Pet = require("../models/pet.js");
+//var Person = require("../models/person.js");
 
 // Requiring our custom middleware for checking if a user is logged in
 //var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -22,18 +22,36 @@ module.exports = function (app) {
 
   app.post("/petInfo", function (req, res) {
     console.log(req.body);
-    Pet.create({
-      microchip: req.body.microchip,
-      breed: req.body.breed,
-      color: req.body.color,
-      isOwner: req.body.isOwner
+   
+
+    db.Pet.findOne({
+      raw: true,
+      where: {
+        microchip: req.body.microchip
+      }
+    }).then(function(result) {
+
+      //var num = result.microchip;
+      //console.log(num);
+
+      if (result == null) {
+        db.Pet.create({
+          microchip: req.body.microchip,
+          breed: req.body.breed,
+          color: req.body.color,
+          isOwner: req.body.isOwner
+        });
+        db.Person.create ({
+          email: req.body.email,
+          address: req.body.address,
+          city: req.body.city
+        })
+      } else {
+        console.log("ALREADY EXISTS");
+      }
       
     });
-    Person.create ({
-      email: req.body.email,
-      address: req.body.address,
-      city: req.body.city
-    })
+
   });
 
   //COPIED FROM OLDER PROJ BELOW

@@ -15,7 +15,17 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false     
       },
-
+      createdAt: {
+        type: DataTypes.DATE,
+        field: 'created_at',
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        field: 'updated_at'
+      }
+    },
+    { 
+        timestamps: false 
     });
 
     Person.associate = function(models) {
