@@ -20,6 +20,10 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
+  app.get("/petFound", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+  });
+
   app.post("/petInfo", function (req, res) {
     console.log(req.body);
    
@@ -47,8 +51,16 @@ module.exports = function (app) {
           city: req.body.city
         })
       } else {
+        console.log (req.body.isOwner);
+        if (req.body.isOwner == "true") {
+          console.log("Your pet was found!"); //Put HTML with contact info with person that found the pet
+          res.json("/petFound");
+        }
+        else if (req.body.isOwner == "false") {
         console.log("ALREADY EXISTS");
+        }
       }
+
       
     });
 

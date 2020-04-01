@@ -30,7 +30,8 @@ $("#foundbtn").click(function(){
   });
    
 
- $("#saveBtn").click(function() {
+ $("#saveBtn").click(function(event) {
+   event.preventDefault();
 
     console.log("save button clicked");
 
@@ -54,8 +55,9 @@ $("#foundbtn").click(function(){
       type: "POST",
       data: userInfo
     }).then(
-      function() {
-        console.log("user info added");
+      function(response) {
+        console.log("user info added", response);
+        location.replace(response);
       }
     );
   
