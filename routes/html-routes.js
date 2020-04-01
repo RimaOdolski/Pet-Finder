@@ -18,10 +18,24 @@ module.exports = function (app) {
   //if user clicks "I lost a pet or I found a pet", go to page to enter info about themselves and pet
   app.get("/petInfo", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
+  });  
+
+  app.get("/petFound/:email/:address/:city", function (req, res) {
+    res.render("index", {email: req.params.email, address: req.params.address, city: req.params.city});
+    //res.sendFile(path.join(__dirname, "../public/test_petFound.html"));
   });
 
-  app.get("/petFound", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+  app.put("/petFound", function (req, res) {
+    res.render("index", req.body);
+    //res.sendFile(path.join(__dirname, "../public/test_petFound.html"));
+  });
+
+  app.get("/petAdded", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/test_petAdded.html"));
+  });
+
+  app.get("/alreadyExists", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/test_alreadyExists.html"));
   });
 
   app.post("/petInfo", function (req, res) {
@@ -50,6 +64,7 @@ module.exports = function (app) {
           address: req.body.address,
           city: req.body.city
         })
+        res.json("/petAdded");
       } else {
         console.log (req.body.isOwner);
         if (req.body.isOwner == "true") {
@@ -58,6 +73,7 @@ module.exports = function (app) {
         }
         else if (req.body.isOwner == "false") {
         console.log("ALREADY EXISTS");
+        res.json("/alreadyExists");
         }
       }
 

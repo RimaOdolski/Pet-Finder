@@ -5,7 +5,7 @@ var session = require("express-session");
 //var passport = require("./config/passport");
 
 // Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 8081;
+var PORT = process.env.PORT || 3000;
 var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
@@ -17,6 +17,12 @@ app.use(
 );
 app.use(express.json());
 app.use(express.static("public"));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // We need to use sessions to keep track of our user's login status
 app.use(

@@ -57,9 +57,27 @@ $("#foundbtn").click(function(){
     }).then(
       function(response) {
         console.log("user info added", response);
-        location.replace(response);
-      }
-    );
+        if (response == "/petFound") {
+         
+          var handleBarInfo = {
+            email: $("#email").val().trim(),
+            address: $("#address").val().trim(),
+            city: $("#city").val().trim()
+          };
+
+          console.log(handleBarInfo);
+
+          $.ajax("/petFound", {
+            type: "PUT",
+            data: handleBarInfo
+          }).then(function(res){
+            console.log("response received");
+            location.replace("/petFound/" + $("#email").val().trim() + "/" + $("#address").val().trim() + "/" + $("#city").val().trim());
+          });
+        } else {
+          location.replace(response);
+        }
+      });
   
 
 
