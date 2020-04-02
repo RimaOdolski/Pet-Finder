@@ -72,7 +72,7 @@ $("#foundbtn").click(function(){
             data: handleBarInfo
           }).then(function(res){
             console.log("response received");
-            location.replace("/petFound/" + $("#email").val().trim() + "/" + $("#address").val().trim() + "/" + $("#city").val().trim());
+            location.replace("/petFound/" + $("#microchip").val().trim());
           });
         } else {
           location.replace(response);

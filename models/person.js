@@ -1,6 +1,12 @@
 // Creating our Person model
 module.exports = function (sequelize, DataTypes) {
     var Person = sequelize.define("Person", { 
+      microchip: {
+        type: DataTypes.STRING, //.INTEGER
+        allowNull: false,
+        primaryKey: true
+      },
+      
       email: {
         type: DataTypes.STRING,
         allowNull: false

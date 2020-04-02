@@ -20,8 +20,17 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });  
 
-  app.get("/petFound/:email/:address/:city", function (req, res) {
-    res.render("index", {email: req.params.email, address: req.params.address, city: req.params.city});
+  app.get("/petFound/:microchip"/*email/:address/:city"*/, function (req, res) {
+    db.Person.findOne({
+      raw: true,
+      where: {
+        microchip: req.params.microchip
+      }
+    }).then(function(result) {
+      console.log(result);
+      res.render("index", {email: result.email, address: result.address, city: result.city});
+    });
+    //res.render("index", {email: req.params.email, address: req.params.address, city: req.params.city});
     //res.sendFile(path.join(__dirname, "../public/test_petFound.html"));
   });
 
@@ -60,6 +69,7 @@ module.exports = function (app) {
           isOwner: req.body.isOwner
         });
         db.Person.create ({
+          microchip: req.body.microchip,
           email: req.body.email,
           address: req.body.address,
           city: req.body.city
