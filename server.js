@@ -1,6 +1,7 @@
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
+var path = require("path");
 // Requiring passport as we've configured it
 //var passport = require("./config/passport");
 
@@ -16,7 +17,8 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
